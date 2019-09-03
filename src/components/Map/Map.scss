@@ -1,0 +1,7 @@
+.map {
+    margin-top: 100px;
+    g:hover {
+        opacity: 0.5;
+        pointer-events: bounding-box;
+    }
+}

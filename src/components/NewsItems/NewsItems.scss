@@ -1,0 +1,23 @@
+.news-items {
+
+    &__item {
+        h3 {
+            color: black;
+            font-size:  14px;
+        }
+
+        &:after {
+            content: '';
+            width: 20px;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            height: 1px;
+            background: black;
+        }
+
+        &:last-child:after {
+            height:  0;
+        }
+    }
+}
