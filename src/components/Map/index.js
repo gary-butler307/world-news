@@ -1,7 +1,6 @@
 import React from 'react';
 import './Map.scss';
 
-
 //has an inline map svg with onclick event to choose your continent
 const Map = ({ selectcontinent }) =>
     <div className='map'>
@@ -17,6 +16,7 @@ const Map = ({ selectcontinent }) =>
             <g
                 style={{ "fill": "#53676c" }}
                 id="africa"
+                className='africa'
                 transform="matrix(1.6963e-2,0,0,-1.6963e-2,0,239)">
                 <path
                     id="africa"
