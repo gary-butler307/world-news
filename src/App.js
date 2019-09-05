@@ -23,6 +23,7 @@ function App() {
   const [countrySelection, selectCountry] = useState('');
   const [newsItems, updateNewsItems] = useState([]);
   const [loadState, updateLoadState] = useState(false);
+  const [loadError, updateLoadError] = useState(false);
 
   //function to select the continent, used on the map component
   function updateContinent(continent) {
@@ -56,7 +57,7 @@ function App() {
 
     client.query({
       query: GET_NEWS
-    }).then(result => { updateNewsItems(result.data.news) }).then(() => updateLoadState(true));
+    }).then(result => { updateNewsItems(result.data.news) }).then(() => { updateLoadState(true); updateLoadError(false) }).catch(err => updateLoadError(true))
   }
 
   return (
@@ -71,7 +72,7 @@ function App() {
       {countryList.length === 0 && countrySelection.length === 0 ? <h1>Please select a Continent</h1> : ''}
 
       {/*if the countrySelection state is not empty show the news items*/}
-      {countrySelection.length !== 0 ? <NewsItems country={countrySelection} newsItems={newsItems} loadState={loadState} /> : ''}
+      {countrySelection.length !== 0 ? <NewsItems country={countrySelection} newsItems={newsItems} loadState={loadState} loadError={loadError} /> : ''}
     </div>
   );
 }
