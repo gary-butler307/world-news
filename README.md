@@ -9,7 +9,7 @@ setup
 
 Testing
 
-Currenly there is an example test using enzyme on the NewsItems. to run tests run 'yarn test'.
+Currenly there is an example test using enzyme on the NewsItems and Map. to run tests run 'yarn test'.
 
 #details
 
