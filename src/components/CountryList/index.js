@@ -7,8 +7,7 @@ const CountryList = ({ countrySelection, selectCountry }) => {
         <h3>PLease select a country</h3>
         {countrySelection.map(country =>
             <div onClick={() => selectCountry(country.name)}> {country.name}</div>
-        )
-        }
+        )}
     </div >)
 };
 
