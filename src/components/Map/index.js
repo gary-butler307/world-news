@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Map.scss';
+import MapContext from './../../context/mapContext';
 
 //has an inline map svg with onclick event to choose your continent
-const Map = ({ selectcontinent }) =>
-    <div className='map'>
-        <svg onClick={event => selectcontinent(event.target.id)}
+const Map = () => {
+
+    const { update } = useContext(MapContext);
+
+    return (<div className='map'>
+        <svg onClick={event => update(event.target.id)}
             version="1.0"
             width="468pt"
             height="239pt"
@@ -227,7 +231,7 @@ const Map = ({ selectcontinent }) =>
             </g>
 
         </svg>
-    </div>
-    ;
+    </div>)
+};
 
 export default Map;
