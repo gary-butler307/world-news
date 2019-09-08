@@ -6,7 +6,7 @@ import CountryList from './components/CountryList';
 import NewsItems from './components/NewsItems';
 import ApolloClient, { gql } from 'apollo-boost';
 import MapContext from './context/mapContext';
-import ListContext from './context/mapContext';
+import FilmSearch from './components/FIlmSearch/index';
 
 //get graphql endpoint
 const client = new ApolloClient({
@@ -69,26 +69,31 @@ function App() {
       query: GET_NEWS
     }).then(result => { updateNewsItems(result.data.news); console.log(result.data.news); }).then(() => { updateLoadState(true); updateLoadError(false) }).catch(err => updateLoadError(true))
 
-    console.log(newsItems);
   }
 
   return (
-    <MapContext.Provider value={contextProvider}>
-      <div className="App">
-        {/*always show map*/}
-        <Map selectcontinent={updateContinent} />
-        {/*if the countrylist state is not empty coiuntryList show the countrylist component*/}
+    <div>
+      <MapContext.Provider value={contextProvider}>
+        <div className="App">
+          {/*always show map*/}
+          <Map selectcontinent={updateContinent} />
+          {/*if the countrylist state is not empty coiuntryList show the countrylist component*/}
 
-        {countryList.length !== 0 ?
-          <CountryList countrySelection={countryList} selectCountry={searchCountryNews} />
-          : ''}
+          {countryList.length !== 0 ?
+            <CountryList countrySelection={countryList} selectCountry={searchCountryNews} />
+            : ''}
 
-        {countryList.length === 0 && countrySelection.length === 0 ? <h1>Please select a Continent</h1> : ''}
+          {countryList.length === 0 && countrySelection.length === 0 ? <h1>Please select a Continent</h1> : ''}
 
-        {/*if the countrySelection state is not empty show the news items*/}
-        {/* {countrySelection.length !== 0 ? <NewsItems country={countrySelection} newsItems={newsItems} loadState={loadState} loadError={loadError} /> : ''} */}
-      </div>
-    </MapContext.Provider>
+          {/*if the countrySelection state is not empty show the news items*/}
+          {countrySelection.length !== 0 ? <NewsItems country={countrySelection} newsItems={newsItems} loadState={loadState} loadError={loadError} /> : ''}
+        </div>
+      </MapContext.Provider>
+
+      <FilmSearch client={client} />
+    </div>
+
+
   );
 }
 
