@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import ApolloClient, { gql } from 'apollo-boost';
 import './filmSearch.scss';
 
-
 const FilmSearch = ({ client }) => {
 
     const [inputValue, updateValue] = useState('');
-
     const [filmResult, updateFilmResult] = useState({});
 
     function searchFilm() {
@@ -33,7 +31,6 @@ const FilmSearch = ({ client }) => {
                 <input value={inputValue} onChange={e => updateValue(e.target.value)} />
 
                 <button onClick={searchFilm}>Choose film</button>
-
 
                 {
                     filmResult.Title && inputValue.length !== 0 ?
